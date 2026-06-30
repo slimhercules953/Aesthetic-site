@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-ink-950 text-slate-200 font-sans antialiased;
+    background-image:
+      radial-gradient(60rem 60rem at 80% -10%, rgba(255, 61, 240, 0.08), transparent 60%),
+      radial-gradient(50rem 50rem at 0% 10%, rgba(45, 226, 255, 0.06), transparent 55%),
+      radial-gradient(70rem 40rem at 50% 110%, rgba(124, 45, 255, 0.1), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-accent-500/40 text-white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b0a16;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6311e6, #b489ff);
+    border-radius: 999px;
+    border: 2px solid #0b0a16;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #7c2dff, #ff3df0);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-strong {
+    @apply bg-white/[0.06] backdrop-blur-2xl border border-white/10;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-300 via-neon-magenta to-neon-blue;
+  }
+
+  .text-gradient-soft {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-200 to-neon-blue;
+  }
+
+  .btn-glow {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300;
+    background: linear-gradient(120deg, #6311e6, #7c2dff 40%, #ff3df0);
+    background-size: 200% 100%;
+    box-shadow: 0 0 0 0 rgba(124, 45, 255, 0.5);
+  }
+  .btn-glow:hover {
+    background-position: 100% 0;
+    box-shadow: 0 0 40px -6px rgba(124, 45, 255, 0.8), 0 0 80px -20px rgba(255, 61, 240, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold text-slate-200 border border-white/15 bg-white/[0.03] backdrop-blur-md transition-all duration-300;
+  }
+  .btn-ghost:hover {
+    @apply border-accent-400/60 text-white;
+    box-shadow: 0 0 30px -10px rgba(154, 92, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-300;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-accent-400/30 bg-accent-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-accent-200;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-delay-4 { transition-delay: 0.32s; }
+  .reveal-delay-5 { transition-delay: 0.4s; }
+
+  .perspective {
+    perspective: 1200px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .shimmer-text {
+    background: linear-gradient(90deg, #6b6b80 25%, #ffffff 50%, #6b6b80 75%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 2.5s linear infinite;
+  }
+}
