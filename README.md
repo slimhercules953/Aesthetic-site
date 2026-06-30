@@ -29,3 +29,46 @@
 </div>
 
 ## 🌌 Graphical & Architectural Breakdown
+
+
+
+
+┌─────────────────────────────────────────────────────────┐
+│                       APP WINDOW                        │
+├─────────────────────────────────────────────────────────┤
+│  [👑 Aesthetic King]                [Invite] [GitHub]   │ <-- Navbar
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│         🌌 ELEVATE YOUR DISCORD SERVER                 │ <-- Hero Section
+│             [Invite Bot]  [Learn More]                  │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│   [ 📊 Stats ]    [ ✨ Features ]    [ 🎮 Commands ]    │ <-- Interactive Grid
+├─────────────────────────────────────────────────────────┘
+
+
+### 🎨 Design System & Visual Highlights
+* **Ambient Depth:** Uses advanced layer positioning (`backdrop-blur-xl`) blended with radial gradient overlays (`bg-accent-500/10 blur-[100px]`) to mimic premium dark-mode software interfaces.
+* **Animated Separators:** Implements custom CSS keyframe animations for sleek UI details, including a marquee-style glowing gradient border tracking across the screen layout.
+* **Typographic Contrast:** Pairs structural geometry font families like **Space Grotesk** and **JetBrains Mono** with clean, readable sans-serif layout styling.
+
+---
+
+## ⚡ Key Core Features
+
+| Module | Graphic Element | Purpose |
+| :--- | :---: | :--- |
+| **Moderation** | `🛡️` | Advanced server protection tools to keep your community safe and organized. |
+| **Aesthetics** | `✨` | Visual customization mechanics to give profiles and embeds a highly stylized appearance. |
+| **Economy** | `💎` | Deep engagement loop mechanics running off server-specific custom currency systems. |
+| **Fun & Games** | `🎮` | Interactive mini-games and social utility engines to boost retention metrics. |
+
+---
+
+## 🛠️ Technology Stack & Dependencies
+
+img
+  ⚡ Frontend Tooling  ───> Vite (React & TypeScript)
+  🎨 Visual Layout     ───> Tailwind CSS (Utility-First Layouts)
+  ✨ Typography Glow   ───> Google Fonts (Inter, Space Grotesk, JetBrains Mono)
+  📦 Icon System       ───> Lucide React (Vector Graphic Sets)
