@@ -1,18 +1,41 @@
-import { Crown, Github, MessageCircle, FileText, Shield, Heart } from 'lucide-react';
+import {
+  Crown,
+  Github,
+  MessageCircle,
+  FileText,
+  Shield,
+  Heart,
+} from 'lucide-react';
 
 const LINKS = [
   {
     title: 'Resources',
     items: [
-      { label: 'Support Server', href: 'https://discord.gg/', icon: MessageCircle },
-      { label: 'GitHub Repository', href: 'https://github.com/slimhercules953/Aesthetic-king', icon: Github },
+      {
+        label: 'Support Server',
+        href: 'https://discord.gg/',
+        icon: MessageCircle,
+      },
+      {
+        label: 'GitHub Repository',
+        href: 'https://github.com/slimhercules953/Aesthetic-king',
+        icon: Github,
+      },
     ],
   },
   {
     title: 'Legal',
     items: [
-      { label: 'Terms of Service', href: '#terms', icon: FileText },
-      { label: 'Privacy Policy', href: '#privacy', icon: Shield },
+      {
+        label: 'Terms of Service',
+        href: 'https://github.com/slimhercules953/Aesthetic-king/blob/main/TOS.md',
+        icon: FileText,
+      },
+      {
+        label: 'Privacy Policy',
+        href: 'https://github.com/slimhercules953/Aesthetic-king/blob/main/privacypolicy.md',
+        icon: Shield,
+      },
     ],
   },
 ];
@@ -43,13 +66,13 @@ export default function Footer() {
                 </span>
               </a>
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
-                The all-in-one Discord bot for moderation, aesthetics, economy,
-                and fun. Elevate your server with a premium experience your
-                community will love.
+                No moderation overhead, no heavy economy loops, and no clutter.
+                Just seamless profile coordination, AI-assisted aesthetic bios,
+                dynamic canvas layout previews, and matching color palettes.
               </p>
               <div className="mt-5 flex items-center gap-3">
                 <a
-                  href="https://discord.com/oauth2/authorize?client_id=0&scope=bot+applications.commands&permissions=8"
+                  href="https://discord.com/oauth2/authorize?client_id=940337120684425216&permissions=2147535936&integration_type=0&scope=bot+applications.commands"
                   target="_blank"
                   rel="noreferrer"
                   className="btn-glow !px-5 !py-2.5 text-sm"
@@ -81,8 +104,14 @@ export default function Footer() {
                       <li key={item.label}>
                         <a
                           href={item.href}
-                          target={item.href.startsWith('http') ? '_blank' : undefined}
-                          rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                          target={
+                            item.href.startsWith('http') ? '_blank' : undefined
+                          }
+                          rel={
+                            item.href.startsWith('http')
+                              ? 'noreferrer'
+                              : undefined
+                          }
                           className="group inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
                         >
                           <Icon className="h-4 w-4 text-slate-500 transition-colors group-hover:text-accent-300" />
@@ -99,10 +128,13 @@ export default function Footer() {
           {/* Bottom bar */}
           <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 sm:flex-row">
             <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} Aesthetic King. Not affiliated with Discord Inc.
+              © {new Date().getFullYear()} Aesthetic King. Not affiliated with
+              Discord Inc.
             </p>
             <p className="flex items-center gap-1.5 text-xs text-slate-500">
-              Crafted with <Heart className="h-3.5 w-3.5 fill-neon-magenta text-neon-magenta" /> for communities everywhere
+              Crafted with{' '}
+              <Heart className="h-3.5 w-3.5 fill-neon-magenta text-neon-magenta" />{' '}
+              for communities everywhere
             </p>
           </div>
         </div>

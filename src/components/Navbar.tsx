@@ -71,7 +71,7 @@ export default function Navbar() {
             <span>GitHub</span>
           </a>
           <a
-            href="https://discord.com/oauth2/authorize?client_id=0&scope=bot+applications.commands&permissions=8"
+            href="https://discord.com/oauth2/authorize?client_id=940337120684425216&permissions=2147535936&integration_type=0&scope=bot+applications.commands"
             target="_blank"
             rel="noreferrer"
             className="btn-glow !px-5 !py-2 text-sm"

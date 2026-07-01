@@ -1,10 +1,10 @@
 import {
-  Shield,
   Sparkles,
-  Coins,
-  Music,
-  Wrench,
-  Gamepad2,
+  Palette,
+  Paintbrush as ColorIcon,
+  Dices,
+  Lock,
+  Compass,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -13,14 +13,13 @@ export type Stat = {
   value: number;
   suffix: string;
   prefix?: string;
-  decimals?: number;
+  decimals?: string;
 };
 
 export const STATS: Stat[] = [
-  { label: 'Active Servers', value: 512, suffix: '+' },
-  { label: 'Users Reached', value: 250, suffix: 'k+', prefix: '' },
-  { label: 'Commands Run Daily', value: 1.4, suffix: 'M+', decimals: 1 },
-  { label: 'Uptime', value: 99.9, suffix: '%', decimals: 1 },
+  { label: 'Curated Assets', value: 500, suffix: '+' },
+  { label: 'Color Palettes', value: 150, suffix: '+' },
+  { label: 'Uptime', value: 99.9, suffix: '%', decimals: '1' },
 ];
 
 export type Feature = {
@@ -34,332 +33,350 @@ export type Feature = {
 
 export const FEATURES: Feature[] = [
   {
-    icon: Shield,
-    title: 'Moderation',
+    icon: Sparkles,
+    title: 'Aesthetic Bio Generation',
     description:
-      'Auto-mod, raid protection, warn systems, and detailed audit logs — keep your community safe without lifting a finger.',
+      'Utilizes advanced AI to craft fully customized, beautifully structured Discord bios tailoring to specific visual subcultures.',
     accent: 'from-accent-500/20 to-accent-500/5',
     span: 'lg:col-span-2',
-    points: ['Auto-mod filters', 'Raid shield', 'Warn & mute system', 'Audit logs'],
+    points: [
+      'AI-generated originals',
+      'Pastel, & Cyber presets',
+      'Clean layout variations',
+    ],
   },
   {
-    icon: Sparkles,
-    title: 'Aesthetics & Profiles',
+    icon: Palette,
+    title: 'Theme Coordination',
     description:
-      'Custom profile cards, rank banners, and server welcome designs that make every member feel at home.',
+      'Dynamically selects perfectly color-matched custom profile pictures and banners directly from Cloudflare R2 object storage bins.',
     accent: 'from-neon-magenta/20 to-neon-pink/5',
-    points: ['Profile cards', 'Rank banners', 'Welcome designs'],
+    points: [
+      'Prefix bundle pairing',
+      'Downloadable asset links',
+      'Visual aesthetic recommendations',
+    ],
   },
   {
-    icon: Coins,
-    title: 'Economy',
+    icon: Compass,
+    title: 'Dynamic Previews',
     description:
-      'A full currency system with daily rewards, shops, gambling games, and leaderboards your members will obsess over.',
+      'Compiles a downloadable mockup of a Discord UI profile client via node-canvas, mapping color extraction details instantly.',
     accent: 'from-neon-blue/20 to-neon-cyan/5',
-    points: ['Daily rewards', 'Shops', 'Leaderboards'],
+    points: [
+      'Dominant color bars',
+      'Nitro & custom badge mocks',
+      'PNG profile downloads',
+    ],
   },
   {
-    icon: Music,
-    title: 'Music & Fun',
+    icon: ColorIcon,
+    title: 'Color Analytics',
     description:
-      'High-quality music streaming from multiple sources, plus games, memes, and interactive commands to keep chat alive.',
+      'Displays precise hex data layouts alongside closest named matches, expanding visual palettes for custom role setups.',
     accent: 'from-neon-green/20 to-accent-400/5',
     span: 'lg:col-span-2',
-    points: ['HD music', 'Games', 'Memes & trivia'],
+    points: [
+      'Hex code breakdown',
+      'Aesthetic variant naming',
+      'Matching accent charts',
+    ],
   },
   {
-    icon: Wrench,
-    title: 'Utility',
+    icon: Palette, // Make sure 'Palette' is imported from 'lucide-react' at the top of the file
+    title: 'Color Palette Extraction',
     description:
-      'Tickets, reminders, polls, auto-roles, and a configurable dashboard for everything.',
+      'Instantly sample image uploads to extract primary and secondary hex color tracks, creating matching system profiles seamlessly.',
     accent: 'from-accent-400/20 to-accent-600/5',
-    points: ['Tickets', 'Reminders', 'Auto-roles'],
+    points: [
+      'Image color sampling arrays',
+      'Instant hex track matching',
+      'Zero-latency canvas previews',
+    ],
   },
   {
-    icon: Gamepad2,
-    title: 'Leveling',
+    icon: Lock,
+    title: 'Privacy-First Architecture',
     description:
-      'XP, levels, role rewards, and a prestige system that turns engagement into a game.',
+      'No user IDs or structural server configurations are saved long-term. Information is processed strictly in-memory during command loops.',
     accent: 'from-neon-cyan/20 to-neon-blue/5',
-    points: ['XP & levels', 'Role rewards', 'Prestige'],
+    points: [
+      'No persistent analytics',
+      'Volatile command loops',
+      'Immediate RAM disposal',
+    ],
   },
 ];
 
-export type CommandCategory = 'General' | 'Admin' | 'Economy' | 'Fun';
+export type CommandCategory =
+  | 'Core Features'
+  | 'Aesthetic Assets'
+  | 'Utility & Info';
+
+export interface LayoutCanvasData {
+  type: 'theme-canvas' | 'image-dispenser' | 'text-block' | 'fields-grid';
+  primaryColor?: string;
+  secondaryColor?: string;
+  pfpUrl?: string;
+  bannerUrl?: string;
+  mainText?: string;
+  fields?: { label: string; value: string }[];
+}
+
+export interface CommandPreview {
+  executor: string;
+  commandName: string;
+  responseText: string;
+  timestamp: string;
+  canvas: LayoutCanvasData;
+}
 
 export type Command = {
   name: string;
   category: CommandCategory;
   description: string;
   usage: string;
-  preview: {
-    user: string;
-    avatarColor: string;
-    content: string;
-    embed: {
-      title: string;
-      description: string;
-      color: string;
-      fields?: { name: string; value: string }[];
-      footer?: string;
-    };
-  };
+  preview: CommandPreview;
 };
 
-export const COMMAND_CATEGORIES: CommandCategory[] = ['General', 'Admin', 'Economy', 'Fun'];
+export const COMMAND_CATEGORIES: CommandCategory[] = [
+  'Core Features',
+  'Aesthetic Assets',
+  'Utility & Info',
+];
 
 export const COMMANDS: Command[] = [
+  /* ==================== CORE FEATURES ==================== */
   {
-    name: '/help',
-    category: 'General',
-    description: 'Browse all commands and modules with an interactive menu.',
-    usage: '/help [module]',
+    name: '/theme',
+    category: 'Core Features',
+    description: 'Creates a profile layout from a pfp and banner.',
+    usage: '/theme',
     preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '✨ Aesthetic King — Help Menu',
-        description: 'Select a module below to explore its commands.',
-        color: '#7c2dff',
+      executor: 'P4rz1val',
+      commandName: 'theme',
+      responseText: 'Here is your generated design!',
+      timestamp: '8:03 PM',
+      canvas: {
+        type: 'theme-canvas',
+        primaryColor: '#373b5d',
+        secondaryColor: '#48456aff',
+        pfpUrl: '/46 pfp.jpg',
+        bannerUrl: '/46 banner.jpg',
+      },
+    },
+  },
+  {
+    name: '/bio',
+    category: 'Core Features',
+    description: 'Sends an AI generated bio.',
+    usage: '/bio',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'bio',
+      responseText: 'Here is your new custom profile biography recommendation:',
+      timestamp: '8:04 PM',
+      canvas: {
+        type: 'text-block',
+        mainText:
+          '"lost in the neon clouds ☁️✨ chasing pastel dreams and quiet frequencies."',
         fields: [
-          { name: '🛡️ Moderation', value: '12 commands' },
-          { name: '🎨 Aesthetics', value: '8 commands' },
-          { name: '💰 Economy', value: '15 commands' },
-          { name: '🎵 Music & Fun', value: '20 commands' },
+          { label: 'Vibe Match', value: 'Pastel / Cyber' },
+          { label: 'Length', value: '84 chars' },
         ],
-        footer: 'Use the buttons below to navigate • Page 1/4',
       },
     },
   },
   {
     name: '/profile',
-    category: 'General',
-    description: 'View your beautifully rendered aesthetic profile card.',
-    usage: '/profile [@user]',
+    category: 'Core Features',
+    description: 'Sends a randomly selected profile for you.',
+    usage: '/profile',
     preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '👑 Profile — @luna',
-        description: 'A custom-designed profile card with badges, rank, and balance.',
-        color: '#ff3df0',
+      executor: 'P4rz1val',
+      commandName: 'profile',
+      responseText: 'Here is your randomly selected profile setup!',
+      timestamp: '8:05 PM',
+      canvas: {
+        type: 'image-dispenser',
+        pfpUrl: '/46 pfp.jpg',
+        bannerUrl: '/46 banner.jpg',
+        mainText: 'Cloudflare R2 Asset Pair #0046',
+      },
+    },
+  },
+  {
+    name: '/random',
+    category: 'Core Features',
+    description: 'Sends a random suggestion to be run as a command.',
+    usage: '/random',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'random',
+      responseText:
+        'Looking for inspiration? Try invoking this random configuration route:',
+      timestamp: '8:06 PM',
+      canvas: {
+        type: 'fields-grid',
+        mainText: '🎲 Suggestion Router',
+        fields: [{ label: 'Recommended Next Command', value: '`/cyberpunk`' }],
+      },
+    },
+  },
+
+  /* ==================== AESTHETIC ASSETS ==================== */
+  {
+    name: '/pastel',
+    category: 'Aesthetic Assets',
+    description: 'Send a pastel aesthetic image.',
+    usage: '/pastel',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'pastel',
+      responseText: 'Here is your curated asset query response:',
+      timestamp: '8:07 PM',
+      canvas: {
+        type: 'image-dispenser',
+        bannerUrl: '/assets/pastel-banner.jpg',
+        mainText: 'Collection: pastel-landscape',
+      },
+    },
+  },
+  {
+    name: '/cyberpunk',
+    category: 'Aesthetic Assets',
+    description: 'Send a cyberpunk aesthetic image.',
+    usage: '/cyberpunk',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'cyberpunk',
+      responseText: 'Here is your curated asset query response:',
+      timestamp: '8:08 PM',
+      canvas: {
+        type: 'image-dispenser',
+        bannerUrl: '/assets/cyberpunk-street.jpg',
+        mainText: 'Collection: cyberpunk-city',
+      },
+    },
+  },
+  {
+    name: '/minimalist',
+    category: 'Aesthetic Assets',
+    description: 'Send a minimalist aesthetic image.',
+    usage: '/minimalist',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'minimalist',
+      responseText: 'Here is your curated asset query response:',
+      timestamp: '8:09 PM',
+      canvas: {
+        type: 'image-dispenser',
+        bannerUrl: '/assets/minimalist-lines.jpg',
+        mainText: 'Collection: mono-minimalist',
+      },
+    },
+  },
+  {
+    name: '/neon',
+    category: 'Aesthetic Assets',
+    description: 'Sends a neon aesthetic image.',
+    usage: '/neon',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'neon',
+      responseText: 'Here is your curated asset query response:',
+      timestamp: '8:10 PM',
+      canvas: {
+        type: 'image-dispenser',
+        bannerUrl: '/assets/neon-glow.jpg',
+        mainText: 'Collection: neon-lights',
+      },
+    },
+  },
+
+  /* ==================== UTILITY & INFO ==================== */
+  {
+    name: '/help',
+    category: 'Utility & Info',
+    description: 'Sends a help command that displays the current commands.',
+    usage: '/help',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'help',
+      responseText:
+        'Explore our complete active inventory of modular slash commands:',
+      timestamp: '8:12 PM',
+      canvas: {
+        type: 'fields-grid',
+        mainText: '✨ Aesthetic King — Help Menu',
         fields: [
-          { name: 'Level', value: '42  (12,840 XP)' },
-          { name: 'Balance', value: '◈ 8,420 coins' },
-          { name: 'Badges', value: '💎 🏆 ⭐ 🎨' },
+          {
+            label: '🎨 UI Design',
+            value: '`/bio`, `/profile`, `/theme`, `/random`',
+          },
+          { label: '📸 Asset Channels', value: '18 specific visual hooks' },
+          {
+            label: '⚙️ Integration',
+            value: '`/help`, `/ping`, `/uptime`, `/vote`',
+          },
         ],
-        footer: 'Earn XP by chatting • Prestige II',
       },
     },
   },
   {
-    name: '/rank',
-    category: 'General',
-    description: 'Check your server rank and progress to the next level.',
-    usage: '/rank [@user]',
+    name: '/ping',
+    category: 'Utility & Info',
+    description: 'Go away.',
+    usage: '/ping',
     preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '📈 Rank — @luna',
-        description: 'You are **#3** in this server. Keep chatting to climb!',
-        color: '#2de2ff',
+      executor: 'P4rz1val',
+      commandName: 'ping',
+      responseText: '',
+      timestamp: '8:13 PM',
+      canvas: {
+        type: 'fields-grid',
+        mainText: '🏓 Latency Echo',
+        fields: [{ label: 'Gateway Connection', value: '24ms' }],
+      },
+    },
+  },
+  {
+    name: '/uptime',
+    category: 'Utility & Info',
+    description: "Let's you know how long the bot has been on.",
+    usage: '/uptime',
+    preview: {
+      executor: 'P4rz1val',
+      commandName: 'uptime',
+      responseText: 'Requesting host infrastructure metrics...',
+      timestamp: '8:14 PM',
+      canvas: {
+        type: 'fields-grid',
+        mainText: '⏳ Operational Execution Uptime',
         fields: [
-          { name: 'Current Level', value: '42' },
-          { name: 'Progress', value: '████████░░ 82% to Level 43' },
+          { label: 'Active State', value: '3 days, 14 hours' },
+          { label: 'Environment State', value: 'Ephemeral' },
         ],
-        footer: 'Next role reward at Level 45 → @Veteran',
       },
     },
   },
   {
-    name: '/ban',
-    category: 'Admin',
-    description: 'Ban a member with an optional reason and audit-log entry.',
-    usage: '/ban @user [reason]',
+    name: '/vote',
+    category: 'Utility & Info',
+    description: 'Vote for Aesthetic King on Top.gg.',
+    usage: '/vote',
     preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '🔨 Ban Executed',
-        description: 'Member **@spammer** has been banned from the server.',
-        color: '#ff3df0',
+      executor: 'P4rz1val',
+      commandName: 'vote',
+      responseText:
+        'Thank you for supporting our server development workflows!',
+      timestamp: '8:15 PM',
+      canvas: {
+        type: 'fields-grid',
+        mainText: '💖 Support Authentic Aesthetics Development',
         fields: [
-          { name: 'Moderator', value: '@admin' },
-          { name: 'Reason', value: 'Spamming channels' },
-          { name: 'Case ID', value: '#0042' },
+          { label: 'Top.gg Route', value: 'Click here to drop a daily vote' },
         ],
-        footer: 'Logged to #audit • Undo with /unban 0042',
-      },
-    },
-  },
-  {
-    name: '/automod',
-    category: 'Admin',
-    description: 'Configure auto-mod filters for spam, links, and profanity.',
-    usage: '/automod set <filter> <action>',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '🛡️ Auto-Mod Configuration',
-        description: 'Updated filter settings for this server.',
-        color: '#7c2dff',
-        fields: [
-          { name: 'Spam Filter', value: '✅ Enabled → Delete + Warn' },
-          { name: 'Link Filter', value: '✅ Enabled → Delete' },
-          { name: 'Profanity', value: '⬜ Disabled' },
-        ],
-        footer: 'Changes apply instantly across all channels',
-      },
-    },
-  },
-  {
-    name: '/purge',
-    category: 'Admin',
-    description: 'Bulk-delete messages with optional user or content filters.',
-    usage: '/purge <amount> [@user]',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '🧹 Purge Complete',
-        description: 'Successfully deleted **50** messages from #general.',
-        color: '#2de2ff',
-        fields: [{ name: 'Duration', value: '1.2s' }],
-        footer: 'Audit entry created • Case #0043',
-      },
-    },
-  },
-  {
-    name: '/balance',
-    category: 'Economy',
-    description: 'Check your coin balance and net worth.',
-    usage: '/balance [@user]',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '💰 Balance — @luna',
-        description: 'Your wallet and bank holdings.',
-        color: '#3dffb0',
-        fields: [
-          { name: '◈ Wallet', value: '8,420 coins' },
-          { name: '🏦 Bank', value: '24,100 coins' },
-          { name: 'Net Worth', value: '32,520 coins' },
-        ],
-        footer: 'Deposit with /deposit to keep your coins safe',
-      },
-    },
-  },
-  {
-    name: '/daily',
-    category: 'Economy',
-    description: 'Claim your daily reward and build a streak for bonuses.',
-    usage: '/daily',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '🎁 Daily Reward Claimed',
-        description: 'You received **500 coins**! Come back tomorrow for a bigger reward.',
-        color: '#3dffb0',
-        fields: [
-          { name: 'Streak', value: '🔥 7 days' },
-          { name: 'Bonus', value: '+20% streak multiplier' },
-        ],
-        footer: 'Next reward: 600 coins • Streak resets in 24h',
-      },
-    },
-  },
-  {
-    name: '/shop',
-    category: 'Economy',
-    description: 'Browse and buy items, roles, and cosmetics with your coins.',
-    usage: '/shop [page]',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '🛒 Server Shop',
-        description: 'Spend your coins on roles and cosmetics.',
-        color: '#7c2dff',
-        fields: [
-          { name: '🎨 Custom Color', value: '1,500 coins' },
-          { name: '⭐ Star Badge', value: '3,000 coins' },
-          { name: '👑 VIP Role', value: '10,000 coins' },
-        ],
-        footer: 'Buy with /buy <item> • Restocks daily',
-      },
-    },
-  },
-  {
-    name: '/play',
-    category: 'Fun',
-    description: 'Play high-quality music from YouTube, Spotify, and more.',
-    usage: '/play <song or url>',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '🎵 Now Playing',
-        description: '**Midnight City** — M83',
-        color: '#2de2ff',
-        fields: [
-          { name: 'Duration', value: '4:03' },
-          { name: 'Queued by', value: '@luna' },
-          { name: 'Source', value: 'YouTube' },
-        ],
-        footer: 'Controls: /skip /pause /queue • Filters: /bassboost',
-      },
-    },
-  },
-  {
-    name: '/trivia',
-    category: 'Fun',
-    description: 'Start a multiplayer trivia game with leaderboard scoring.',
-    usage: '/trivia [category]',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '🧠 Trivia Started',
-        description: 'First to 5 points wins! React to answer.',
-        color: '#ff3df0',
-        fields: [
-          { name: 'Category', value: 'Science & Tech' },
-          { name: 'Players', value: '4 joined' },
-        ],
-        footer: 'Round 1 of 5 • 15s per question',
-      },
-    },
-  },
-  {
-    name: '/meme',
-    category: 'Fun',
-    description: 'Fetch a fresh meme from your favorite subreddit.',
-    usage: '/meme [subreddit]',
-    preview: {
-      user: 'Aesthetic King',
-      avatarColor: 'from-accent-500 to-neon-magenta',
-      content: '',
-      embed: {
-        title: '😂 Fresh Meme',
-        description: 'Pulled from r/ProgrammerHumor',
-        color: '#3dffb0',
-        fields: [{ name: 'Upvotes', value: '12.4k ↑' }],
-        footer: 'Refresh with /meme again • /meme dankmemes',
       },
     },
   },
